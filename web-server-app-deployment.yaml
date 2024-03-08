@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: web-server-app
+  namespace: my-apps
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: web-server-app
+  template:
+    metadata:
+      labels:
+        app: web-server-app
+    spec:
+      containers:
+      - name: web-server-app
+        image: brunnerlan/web-server-app:latest
+        ports:
+        - containerPort: 80
+        env:
+        - name: MYSQL_DATABASE_HOST
+          value: "mysql-service.my-apps.svc.cluster.local"
+        - name: MYSQL_USER
+          value: "root"
+        - name: MYSQL_PASSWORD
+          value: "manuelbrunner"
+        - name: MYSQL_DATABASE
+          value: "ManuelsDatenbank"
+        resources:
+          requests:
+            memory: "64Mi"
+            cpu: "250m"
+          limits:
+            memory: "128Mi"
+            cpu: "500m"

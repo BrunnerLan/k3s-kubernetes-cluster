@@ -1,0 +1,17 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: result-server-ingress
+  namespace: my-apps
+spec:
+  rules:
+  - host: meinresultserver.manuel.com
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: result-server-app
+            port:
+              number: 80

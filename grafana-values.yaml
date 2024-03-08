@@ -1,0 +1,7 @@
+admin:
+  ## @param admin.user Grafana admin username
+  ##
+  user: "admin"
+  ## @param admin.password Admin password. If a password is not provided a random password will be generated
+  ##
+  password: "supersecret123"
